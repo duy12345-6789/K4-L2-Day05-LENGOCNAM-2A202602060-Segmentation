@@ -40,19 +40,26 @@ Chọn object đầu tiên bạn tự vẽ ở `medium_instance`, trước khi x
 
 ## 3. Một lỗi tôi tìm thấy và sửa
 
-Chọn một lỗi **có thật** trong bài. Nếu công cụ lỗi khiến bạn chưa sửa được, ghi rõ đã thử gì và cần coach hỗ trợ gì; không ghi “đã sửa” khi chưa sửa.
+- Task/ảnh/vùng: `medium_instance`, ba ảnh `000000181542.jpg`, `000000373353.jpg`, `000000458325.jpg`.
+- Lỗi thuộc loại: thiếu vật trong bản nộp trước rework; cần kiểm tách từng instance.
+- Bằng chứng: Bản export trước có 9 mask, trong khi gói đáp án được cung cấp có 71 object. Mỗi người hoặc xe nhìn thấy cần một instance riêng; một mask theo lớp không thay cho nhiều vật.
+- Quy tắc và hành động sửa: Nhận và thay bằng `medium_instance.zip` mới, gồm 84 mask trên đúng ba ảnh và sáu lớp, format COCO 1.0. Giữ nguyên nội dung bản export CVAT; chỉ đổi bản ZIP được nộp. Số mask mới theo ảnh là 30, 26, 28; chỉ số đối chiếu được tính lại bằng cùng scorer và cùng gói đáp án.
+- Sau sửa đã Save và export lại chưa? Đã có bản export mới. Ba ZIP tier đạt kiểm cấu trúc với 0 lỗi. Easy và Hard giữ nguyên bản export trước.
 
-- Task/ảnh/vùng: Gói nộp `2A202602060-LENGOCNAM.zip`, ba thư mục tier.
-- Lỗi thuộc loại: khác — nhầm task/định dạng khi đóng gói kết quả.
-- Bằng chứng tôi nhìn thấy: `easy_semantic/` chứa COCO keypoints Day 4 với ảnh `train_01.jpg`–`train_20.jpg`; `medium_instance/` chứa ba mask semantic Easy; `hard_panoptic/` chứa ba ảnh COCO Medium thay vì hai ảnh Hard.
-- Quy tắc và hành động sửa: Đối chiếu tên ảnh, lớp và định dạng với từng task. Dùng đúng export CVAT job 8 cho `easy_semantic.zip`, job 9 cho `medium_instance.zip`, job 10 cho `hard_panoptic.zip`; đặt ba ZIP vào `submissions/`. Nội dung ZIP giữ nguyên byte từ các bản export gốc.
-- Sau sửa đã Save và export lại chưa? Ba tier đã được vẽ và export từ CVAT. Lượt sửa này sửa cách chọn, đặt tên và vị trí ZIP nộp; dùng các bản export đã có. Kiểm cấu trúc ba ZIP: 0 lỗi; Medium có 9 mask trên 3 ảnh, Hard có 72 mask trên 2 ảnh. Chất lượng biên, số vật và phủ vùng cần kiểm trực quan.
+| Chỉ số đối chiếu cục bộ | Trước thay Medium | Sau thay Medium |
+| --- | ---: | ---: |
+| Mask Medium | 9 | 84 |
+| Metric Medium (mean matched IoU × recall) | 0,034 | 0,559 |
+| Điểm Medium | 0/32 | 11,3/32 |
+| Tổng ba tier | 30,3/82 | 41,6/82 |
 
-**Phản hồi sau khi sửa cách đóng gói:** Ba ZIP đúng task đều đạt kiểm cấu trúc; không có thay đổi annotation trong lượt sửa này. [Lần chạy GitHub Actions thủ công](https://github.com/duy12345-6789/K4-L2-Day05-LENGOCNAM-2A202602060-Segmentation/actions/runs/35212450941) thành công, nhưng bước chấm điểm bị bỏ qua do release chính thức chưa có gói đáp án.
+[Scorecard hiện tại](reports/local_evaluation/SCORECARD.md) và [mốc trước rework](reports/local_evaluation/history/before_medium_rework/SCORECARD.md). Easy vẫn 18,4/20 (metric 0,815); Hard vẫn 11,9/30 (PQ 0,378).
 
-Đã chạy scorer nguyên bản trên máy với `tiers_gt.zip` được cung cấp. [Scorecard đối chiếu cục bộ](reports/local_evaluation/SCORECARD.md): Easy metric 0,815 → 18,4/20; Medium metric 0,034 → 0/32; Hard PQ 0,378 → 11,9/30; tổng **30,3/82**. Đây là một mốc đối chiếu sau khi nhận gói đáp án, không phải chỉ số trước/sau sửa mask, điểm chính thức hay bằng chứng chất lượng bản làm độc lập. Medium hiện có 9 mask trong bản nộp so với 71 object trong gói đáp án, cần kiểm lại thiếu vật và tách từng instance.
+**Kết quả còn cần QC:** Medium có 52 mask khớp tại IoU ≥ 0,5, mean matched IoU 0,763, precision 0,619, recall 0,732. Còn 32 mask nộp chưa khớp và 19 object tham chiếu chưa khớp. Các số này giúp tìm thiếu vật, sai lớp, trùng vật hoặc lệch biên; chưa đủ để quyết định xóa mask nào. Chín mask gốc vẫn có trong bản mới cùng 75 mask bổ sung, nên cần kiểm trực quan chồng lấn và định danh object.
 
-Gói ground truth được giữ ngoài repository; chỉ các chỉ số và báo cáo được đưa lên fork. Sáu checkpoint chưa được chấm. PASS, bonus và top 3 do người phụ trách xác nhận.
+Đây là phản hồi cục bộ sau khi nhận `tiers_gt.zip`, không phải điểm chính thức hay bằng chứng chất lượng bản làm độc lập trước lúc xem đáp án. GitHub Actions dùng workflow sẵn có và chờ release đáp án chính thức; [lần chạy thủ công đã kiểm](https://github.com/duy12345-6789/K4-L2-Day05-LENGOCNAM-2A202602060-Segmentation/actions/runs/35212450941) thành công nhưng bỏ qua chấm điểm.
+
+Lỗi đóng gói ban đầu cũng đã sửa: `easy_semantic/` chứa bài Pose Day 4, `medium_instance/` chứa Easy, `hard_panoptic/` chứa Medium. Bản nộp hiện tại dùng ZIP đúng task trong `submissions/`. Gói đáp án được giữ ngoài fork. Sáu checkpoint chưa có ZIP; mục 2 và mục 4 vẫn cần thông tin thực tế từ người làm bài. PASS, bonus và top 3 do người phụ trách xác nhận.
 
 ## 4. Ba ca chưa chắc hoặc đã cân nhắc
 
