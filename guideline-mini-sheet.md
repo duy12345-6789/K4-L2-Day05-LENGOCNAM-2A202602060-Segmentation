@@ -31,7 +31,7 @@ Khi không chắc, ghi ảnh/vị trí, dấu hiệu nhìn thấy, quy tắc đ�
 
 ## Áp dụng cho bài 2A202602060 — bản export mới nhất
 
-Ngày kiểm: **17/09/2026**. Bản dùng để kiểm: `DAY05-2A202602060-LENGOCNAM.zip`. Các ghi nhận dưới đây là QC của bản export hiện tại, không xác nhận lịch sử tự vẽ trước khi dùng model.
+Ngày kiểm: **17/09/2026**. Bản dùng để kiểm: `DAY05-2A202602060-LENGOCNAM.zip`. Các ghi nhận hình học dưới đây là QC của bản export hiện tại; thông tin về object đầu tiên trước model được ghi theo xác nhận của người làm bài.
 
 Nơi lưu các ZIP đã nộp và kết quả kiểm: [fork GitHub cá nhân](https://github.com/duy12345-6789/K4-L2-Day05-LENGOCNAM-2A202602060-Segmentation). Trạng thái ZIP trong checklist bên dưới áp dụng cho fork.
 
@@ -70,7 +70,8 @@ Tạo từng task từ ảnh và `cvat-labels.json` của đúng trạm, vẽ, S
 - [ ] Medium: kiểm lại object thiếu/thừa, gộp/tách và biên. Hiện có 112 mask; scorer ghi 55 khớp, 57 chưa khớp và 16 object tham chiếu chưa khớp. Không tự động xóa các mask chưa khớp.
 - [ ] Hard: kiểm chồng lấn, đủ thing và phủ stuff. Hiện có 99 mask; hai mask sidewalk chưa khớp tại ngưỡng IoU, lớp bicycle chưa có annotation nộp.
 - [ ] Easy: kiểm biên vegetation và vùng chưa phủ; mIoU hiện tại 0,820, coverage theo tham chiếu 89,4%.
-- [ ] Xác nhận object Medium đầu tiên tự vẽ trước gợi ý, class/quy tắc biên và một quyết định sửa/giữ gợi ý thực tế.
+- [x] Người làm bài xác nhận taxi vàng trong `000000373353.jpg` là object Medium đầu tiên tự vẽ trước model. REPORT đã ghi class `car` và giải thích quy tắc biên.
+- [ ] Kiểm hai mask quanh taxi trong CVAT và ghi thao tác giữ/xóa/sửa gợi ý thực tế nếu có; chưa xác nhận đã thực hiện các thao tác này.
 - [ ] Hoàn thành hoặc cung cấp export cho sáu checkpoint. Không đánh dấu hoàn thành chỉ vì đã có ảnh đầu vào.
 
 Phản hồi cục bộ của **bản mới nhất**: Easy **18,7/20**, Medium **13,3/32**, Hard **12,7/30**, tổng **44,7/82**; tham chiếu là `tiers_gt.zip` do người làm bài cung cấp. Đây không phải điểm chính thức và chưa gồm 18 điểm checkpoint. Ground truth được giữ ngoài fork. GitHub Actions chỉ chấm /82 khi release đáp án chính thức khả dụng; lần chạy xanh không chứng nhận PASS, bonus hoặc top 3.

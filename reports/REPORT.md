@@ -28,12 +28,12 @@ Theo xác nhận của người làm bài, đã vẽ và export ba tier; bản m
 
 ## 2. Một quyết định trước khi dùng gợi ý
 
-- Ảnh, vị trí và object Medium đầu tiên tự vẽ: **chưa xác nhận**. Bản COCO hiện tại có mask và thuộc tính `occluded`, nhưng không lưu nguồn manual/auto hoặc thứ tự xem gợi ý đủ để chứng minh bước này.
-- Class và quy tắc tôi dùng để chọn biên của object đó: **chưa có thông tin xác nhận từ người làm bài**. Không suy ra từ ID annotation hoặc số liệu evaluator.
-- Nếu dùng gợi ý sau đó: người làm bài đã cho biết có sử dụng model, nhưng **chưa xác nhận vùng đề xuất cụ thể đã sửa/giữ và lý do**. Chỉ số của bản export cuối không chứng minh quyết định trước khi xem gợi ý.
-- Quy tắc dùng trong lượt QC hiện tại: mỗi người/xe nhìn thấy là một instance riêng; các mảnh nhìn thấy của cùng một vật bị che giữ chung một instance; chỉ vẽ phần nhìn thấy. Đây là quy tắc kiểm bản export mới, không phải xác nhận đã làm bước tự vẽ trước model.
+- Ảnh, vị trí và object Medium đầu tiên tự vẽ: **`000000373353.jpg`, chiếc taxi vàng ở giữa nửa dưới ảnh, trước xe buýt đỏ và phía sau người đang đi ngang**. Người làm bài đã xác nhận đây là object đầu tiên tự vẽ **trước khi dùng model**.
+- Class và quy tắc chọn biên: **`car`**. Mask theo phần xe nhìn thấy, dừng ở mép thân xe, không ăn sang mặt đường, bóng xe hoặc người phía trước. Kính thuộc chiếc xe không tự động bị khoét thành lỗ. Các phần xe nhìn thấy ở hai bên người che vẫn thuộc **một instance**, không vẽ phần xe bị che.
+- Nhận xét bản nhãn sau khi dùng gợi ý: COCO hiện tại có hai annotation `car` quanh chiếc taxi này, với bounding box gần nhau: `[276, 315, 94, 72]` và `[275, 311, 100, 75]`. Đây là dấu hiệu cần kiểm mask trùng trên cùng một vật trong CVAT; chưa đủ để kết luận từ bounding box rằng hai mask trùng hoàn toàn. Chưa có thông tin xác nhận annotation nào do model hoặc vẽ tay tạo ra.
+- Quyết định QC: chỉ giữ một instance cho chiếc taxi nếu hai mask thực sự mô tả cùng một xe; chỉnh biên để loại phần người/nền nếu có. Khi hai mảnh nhìn thấy thuộc cùng xe, giữ chúng chung một instance. Đây là hướng kiểm và sửa, **chưa xác nhận đã thực hiện thao tác xóa/Join/Save trong CVAT**.
 
-Mục này cần người làm bài xác nhận theo trải nghiệm thực tế trước khi nộp cuối.
+Thông tin về object đầu tiên và mốc trước model được ghi theo xác nhận của người làm bài. Quy tắc biên và nhận xét QC được diễn giải từ ảnh và bản export mới nhất; không suy ra nguồn hay thứ tự annotation từ ID trong COCO.
 
 ## 3. Một lỗi tôi tìm thấy và sửa
 
@@ -72,4 +72,4 @@ Các ca dưới đây được ghi từ **lượt QC hiện tại** trên ảnh 
 | Hard `000000350023.jpg`, dải xám bên trái lòng đường sát hàng cây và các xe gần mép đường | Dải này thuộc road / thuộc sidewalk | Màu hai vùng gần nhau; ranh chức năng và bó vỉa quan trọng hơn màu. Hai mask sidewalk hiện tại chưa khớp tại ngưỡng IoU | Kiểm và dừng sidewalk theo bó vỉa, không kéo mask theo toàn bộ mảng xám; cần xác nhận lại vùng biên trong CVAT trước khi sửa/export. |
 | Hard `000000460147.jpg`, khe giữa lá/tán cây và nền phía trên hoặc cạnh dải cây giữa đường | Tô kín tán cây là vegetation / giữ các khe có sky, building hoặc road nhìn thấy | Có vùng nền nhìn xuyên giữa các nhánh và mép tán; quy tắc chỉ vẽ phần nhìn thấy, không phủ nền cho đủ coverage | Giữ vegetation theo phần cây nhìn thấy; phân lớp nền ở khe xác định được. Pixel quá nhỏ hoặc mơ hồ ghi để hỏi coach, không ép vegetation. |
 
-Ba ca là ghi nhận QC, không xác nhận các lỗi biên đã được sửa trong CVAT. Bản nộp vẫn cần kiểm lại object/vùng và biên; sáu checkpoint cùng xác nhận ở mục 2 còn thiếu.
+Ba ca là ghi nhận QC, không xác nhận các lỗi biên đã được sửa trong CVAT. Bản nộp vẫn cần kiểm lại object/vùng và biên; sáu checkpoint chưa có ZIP. Object Medium đầu tiên trước model đã được người làm bài xác nhận tại mục 2.
