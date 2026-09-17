@@ -1,0 +1,37 @@
+{
+  "total": 30.3,
+  "max": 82,
+  "group": "tiers",
+  "review_flags": [],
+  "tasks": {
+    "easy_semantic": {
+      "type": "semantic",
+      "group": "tiers",
+      "weight": 20,
+      "points": 18.4,
+      "value": 0.815,
+      "flags": []
+    },
+    "medium_instance": {
+      "type": "instance",
+      "group": "tiers",
+      "weight": 32,
+      "points": 0.0,
+      "value": 0.034,
+      "flags": []
+    },
+    "hard_panoptic": {
+      "type": "panoptic",
+      "group": "tiers",
+      "weight": 30,
+      "points": 11.9,
+      "value": 0.378,
+      "flags": []
+    }
+  },
+  "evaluation_source": "Local unchanged starter scorer using user-provided tiers_gt.zip; not GitHub Actions scoring",
+  "official_score": false,
+  "annotation_commit": "44b3e80543fb8f2e210b9047317f2cc8c7bf08f9",
+  "reference_archive_sha256": "bd25ce33fcbff1312ee635d1af23449a921abaf537df9ca6e99085cb46489f49",
+  "evaluated_at_utc": "2026-09-17T10:51:48.128909+00:00"
+}
