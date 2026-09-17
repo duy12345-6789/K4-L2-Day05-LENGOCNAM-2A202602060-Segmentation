@@ -1,5 +1,5 @@
 {
-  "total": 41.6,
+  "total": 44.7,
   "max": 82,
   "group": "tiers",
   "review_flags": [],
@@ -8,40 +8,35 @@
       "type": "semantic",
       "group": "tiers",
       "weight": 20,
-      "points": 18.4,
-      "value": 0.815,
+      "points": 18.7,
+      "value": 0.82,
       "flags": []
     },
     "medium_instance": {
       "type": "instance",
       "group": "tiers",
       "weight": 32,
-      "points": 11.3,
-      "value": 0.559,
+      "points": 13.3,
+      "value": 0.588,
       "flags": []
     },
     "hard_panoptic": {
       "type": "panoptic",
       "group": "tiers",
       "weight": 30,
-      "points": 11.9,
-      "value": 0.378,
+      "points": 12.7,
+      "value": 0.391,
       "flags": []
     }
   },
-  "evaluation_source": "Local unchanged starter scorer using user-provided tiers_gt.zip; not GitHub Actions scoring",
+  "evaluation_source": "Latest DAY05-2A202602060-LENGOCNAM.zip; local unchanged starter scorer with user-provided tiers_gt.zip",
   "official_score": false,
+  "input_package_sha256": "737b30018fcd1251e87234852fc117ce6b078592d36a0c74083a18874207810e",
   "reference_archive_sha256": "bd25ce33fcbff1312ee635d1af23449a921abaf537df9ca6e99085cb46489f49",
-  "evaluated_at_utc": "2026-09-17T11:00:27.832225+00:00",
+  "evaluated_at_utc": "2026-09-17T12:16:58.709735+00:00",
   "submission_sha256": {
-    "easy_semantic.zip": "a89278b1952210bcf44f616f4e62764d5d60a977a7bc32fa44d69817b3ef56ae",
-    "medium_instance.zip": "d4816efcfc947e7f56734b96eee2ec663d7d4cae1cf7a2a3fa4189685334c53a",
-    "hard_panoptic.zip": "43ce8f329f3e73fd4bfff1231c3d47f46bc8dfc43571e58b1c8ffbe70e718b83"
-  },
-  "comparison_before_medium_rework": {
-    "total": 30.3,
-    "medium_metric": 0.034,
-    "medium_points": 0.0,
-    "medium_masks": 9
+    "easy_semantic.zip": "a5f76213b8272015f050e9106716ae76b195ec6d38acfa89dd6ae0a6b722460d",
+    "medium_instance.zip": "8e453819bc32e9651c81a160dc6453c2e8f79d45ab6a4755472725da5f549caf",
+    "hard_panoptic.zip": "f996dac472350466bcbabc83c34b8cda300a97dc9fecf5c66e39b90fa363cd09"
   }
 }

@@ -1,0 +1,114 @@
+{
+  "task": "hard_panoptic",
+  "type": "panoptic",
+  "group": "tiers",
+  "points": 12.7,
+  "weight": 30,
+  "result": {
+    "metric": "PQ",
+    "value": 0.39104961546462563,
+    "SQ": 0.6199495853618945,
+    "RQ": 0.5095655806182121,
+    "per_class": {
+      "building": {
+        "pq": 0.674,
+        "sq": 0.674,
+        "rq": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "truck": {
+        "pq": 0.561,
+        "sq": 0.841,
+        "rq": 0.667,
+        "tp": 3,
+        "fp": 2,
+        "fn": 1
+      },
+      "person": {
+        "pq": 0.084,
+        "sq": 0.589,
+        "rq": 0.143,
+        "tp": 1,
+        "fp": 4,
+        "fn": 8
+      },
+      "car": {
+        "pq": 0.393,
+        "sq": 0.779,
+        "rq": 0.505,
+        "tp": 24,
+        "fp": 45,
+        "fn": 2
+      },
+      "sky": {
+        "pq": 0.925,
+        "sq": 0.925,
+        "rq": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "vegetation": {
+        "pq": 0.295,
+        "sq": 0.59,
+        "rq": 0.5,
+        "tp": 1,
+        "fp": 1,
+        "fn": 1
+      },
+      "bicycle": {
+        "pq": 0.0,
+        "sq": 0.0,
+        "rq": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "motorcycle": {
+        "pq": 0.171,
+        "sq": 0.685,
+        "rq": 0.25,
+        "tp": 1,
+        "fp": 3,
+        "fn": 3
+      },
+      "road": {
+        "pq": 0.433,
+        "sq": 0.867,
+        "rq": 0.5,
+        "tp": 1,
+        "fp": 1,
+        "fn": 1
+      },
+      "bus": {
+        "pq": 0.613,
+        "sq": 0.767,
+        "rq": 0.8,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "traffic light": {
+        "pq": 0.542,
+        "sq": 0.723,
+        "rq": 0.75,
+        "tp": 3,
+        "fp": 1,
+        "fn": 1
+      },
+      "sidewalk": {
+        "pq": 0.0,
+        "sq": 0.0,
+        "rq": 0.0,
+        "tp": 0,
+        "fp": 2,
+        "fn": 2
+      }
+    }
+  },
+  "review_flags": [],
+  "evaluation_source": "Latest DAY05-2A202602060-LENGOCNAM.zip; local unchanged starter scorer with user-provided tiers_gt.zip",
+  "official_score": false
+}

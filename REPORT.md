@@ -1,18 +1,13 @@
-# Báo cáo Day 5 — điền trực tiếp trong fork của bạn
+# Báo cáo Day 5 — 2A202602060
 
-**Cách dùng:** Thay mọi dấu `…` bằng bài làm thật của bạn trước khi nộp link fork trên VLearn. Giữ nguyên bốn mục và bảng để coach đọc nhanh. Viết ngắn, cụ thể theo ảnh/vùng; không cần thuật ngữ chuyên sâu. Ví dụ trong [hướng dẫn mẫu](reports/REPORT_TEMPLATE.md) chỉ giúp hiểu cách điền, không phải câu trả lời để chép lại.
-
-- Mã học viên theo lớp: 2A202602060
-- Ngày / CVAT local: 17/09/2026 — http://localhost:8080
-- Công cụ đã dùng: CVAT local; kiểm cấu trúc export bằng `scripts/inspect_submissions.py`.
-
-Mã học viên là mã lớp cấp; không cần ghi họ tên trong report nếu kênh VLearn đã nhận diện bạn. Chỉ ghi công cụ thật sự đã dùng; không có SAM vẫn làm bài bình thường.
+- Mã học viên: **2A202602060**.
+- Ngày / CVAT local: **17/09/2026 — http://localhost:8080**.
+- Bản export dùng trong báo cáo: **DAY05-2A202602060-LENGOCNAM.zip**, bản mới nhất được cung cấp.
+- Công cụ kiểm tra: CVAT local; `scripts/inspect_submissions.py`; scorer nguyên bản của starter. Điểm dưới đây là đối chiếu cục bộ với `tiers_gt.zip` được cung cấp, sau khi đã nhận gói đáp án.
 
 ## 1. Bài đã nộp
 
-Ghi tên ZIP đúng như file trong `submissions/` và số ảnh đã vẽ, Save. Chưa làm hoặc export lỗi thì ghi `chưa có`, không tạo ZIP rỗng. Cột điểm là điểm tối đa của task, **không phải điểm tự chấm**.
-
-| Task | File ZIP đúng tên | Hoàn thành mấy ảnh | Điểm tối đa (coach chấm sau) |
+| Task | ZIP trong submissions/ | Số ảnh có export | Điểm tối đa của task |
 | --- | --- | ---: | ---: |
 | easy_semantic | `easy_semantic.zip` | 3 / 3 | 20 |
 | medium_instance | `medium_instance.zip` | 3 / 3 | 32 |
@@ -25,48 +20,48 @@ Ghi tên ZIP đúng như file trong `submissions/` và số ảnh đã vẽ, Sav
 | cp6_coverage | chưa có ZIP | chưa xác nhận / 1 | 3 |
 | **Tổng tối đa** | | | **100** |
 
-Nếu export lỗi, ghi task, dữ liệu đã Save đến đâu và lỗi đã báo coach.
-
-**Trạng thái hiện tại:** Đã nhận đủ export ba tier (8 ảnh). Sáu checkpoint chưa có ZIP trong bản nộp hiện tại; chưa xác nhận trạng thái annotation. Mục 2 và mục 4 cần người làm bài cung cấp thông tin thật trước khi nộp VLearn. Kiểm cấu trúc chỉ xác nhận hợp đồng file, không xác nhận mask đúng.
+Đã nhận đủ export ba tier, tổng cộng 8 ảnh. Sáu checkpoint chưa có ZIP trong gói mới nhất; không xác nhận đã hoàn thành những trạm này. Ba tier qua kiểm cấu trúc với **0 lỗi**: đúng tên ảnh, lớp, loại mask và định dạng. Kiểm cấu trúc không chứng minh đủ object hoặc đúng biên.
 
 ## 2. Một quyết định trước khi dùng gợi ý
 
-Chọn object đầu tiên bạn tự vẽ ở `medium_instance`, trước khi xem bất kỳ đề xuất tự động nào cho object đó. Ghi ảnh/vị trí đủ để tìm lại; “quy tắc biên” là lý do bạn chọn hoặc dừng mask ở ranh đó.
+- Object Medium đầu tiên tự vẽ trước khi xem gợi ý: **chưa xác nhận**. File COCO chỉ lưu các mask hiện tại và `occluded`; không lưu nguồn manual/auto hoặc thứ tự xem gợi ý đủ để chứng minh bước này.
+- Ảnh/vị trí/class/quy tắc biên của object đó: **chưa có thông tin xác nhận từ người làm bài**. Không suy ra từ ID annotation hoặc từ số liệu evaluator.
+- Quy tắc QC hiện tại: mỗi người/xe nhìn thấy là một instance riêng; các mảnh nhìn thấy của cùng một vật bị che giữ chung một instance; chỉ vẽ phần nhìn thấy. Đây là quy tắc kiểm bản export mới, không phải xác nhận đã làm bước tự vẽ trước model.
 
-- Ảnh, vị trí và object Medium đầu tiên tự vẽ: …
-- Class và quy tắc tôi dùng để chọn biên: …
-- Nếu dùng gợi ý sau đó: vùng gợi ý sai/đúng, hành động sửa/giữ và lý do: …
-- Nếu không dùng gợi ý: ghi “không dùng”; vẫn giải thích một quyết định gán nhãn của mình.
+Mục này cần người làm bài xác nhận theo trải nghiệm thực tế trước khi nộp cuối.
 
 ## 3. Một lỗi tôi tìm thấy và sửa
 
-- Task/ảnh/vùng: `medium_instance`, ba ảnh `000000181542.jpg`, `000000373353.jpg`, `000000458325.jpg`.
-- Lỗi thuộc loại: thiếu vật trong bản nộp trước rework; cần kiểm tách từng instance.
-- Bằng chứng: Bản export trước có 9 mask, trong khi gói đáp án được cung cấp có 71 object. Mỗi người hoặc xe nhìn thấy cần một instance riêng; một mask theo lớp không thay cho nhiều vật.
-- Quy tắc và hành động sửa: Nhận và thay bằng `medium_instance.zip` mới, gồm 84 mask trên đúng ba ảnh và sáu lớp, format COCO 1.0. Giữ nguyên nội dung bản export CVAT; chỉ đổi bản ZIP được nộp. Số mask mới theo ảnh là 30, 26, 28; chỉ số đối chiếu được tính lại bằng cùng scorer và cùng gói đáp án.
-- Sau sửa đã Save và export lại chưa? Đã có bản export mới. Ba ZIP tier đạt kiểm cấu trúc với 0 lỗi. Easy và Hard giữ nguyên bản export trước.
+- Lỗi thực tế: tên và cách đóng gói bản mới chưa khớp hợp đồng nộp. Gói tổng chứa ba thư mục `essy/`, `medium/`, `hard/`; các native export tương ứng mang tên `essy.zip`, `medium.zip`, `hard.zip`.
+- Bằng chứng: đối chiếu nội dung gói tổng với từng native export; byte của JSON/PNG khớp chính xác. Native export Easy là Segmentation mask 1.1; Medium và Hard là COCO 1.0.
+- Hành động sửa: đặt ba ZIP đúng tên `easy_semantic.zip`, `medium_instance.zip`, `hard_panoptic.zip` vào `submissions/`. **Giữ nguyên byte của các bản export CVAT**, không chỉnh JSON/PNG bên trong.
+- Save/export: đã nhận bản export mới từ CVAT; lượt sửa này chuẩn hóa tên và vị trí file nộp. Ba tier sau chuẩn hóa có 0 lỗi cấu trúc. Medium có **112 mask** trên ba ảnh; Hard có **99 mask** trên hai ảnh.
 
-| Chỉ số đối chiếu cục bộ | Trước thay Medium | Sau thay Medium |
+[Scorecard của bản mới nhất](reports/local_evaluation/SCORECARD.md):
+
+| Tier | Metric | Điểm đối chiếu cục bộ |
 | --- | ---: | ---: |
-| Mask Medium | 9 | 84 |
-| Metric Medium (mean matched IoU × recall) | 0,034 | 0,559 |
-| Điểm Medium | 0/32 | 11,3/32 |
-| Tổng ba tier | 30,3/82 | 41,6/82 |
+| Easy semantic | mIoU 0,820 | 18,7 / 20 |
+| Medium instance | mean matched IoU × recall 0,588 | 13,3 / 32 |
+| Hard panoptic | PQ 0,391 | 12,7 / 30 |
+| **Tổng ba tier** | | **44,7 / 82** |
 
-[Scorecard hiện tại](reports/local_evaluation/SCORECARD.md) và [mốc trước rework](reports/local_evaluation/history/before_medium_rework/SCORECARD.md). Easy vẫn 18,4/20 (metric 0,815); Hard vẫn 11,9/30 (PQ 0,378).
+**Những điểm còn cần QC trong bản mới nhất:**
 
-**Kết quả còn cần QC:** Medium có 52 mask khớp tại IoU ≥ 0,5, mean matched IoU 0,763, precision 0,619, recall 0,732. Còn 32 mask nộp chưa khớp và 19 object tham chiếu chưa khớp. Các số này giúp tìm thiếu vật, sai lớp, trùng vật hoặc lệch biên; chưa đủ để quyết định xóa mask nào. Chín mask gốc vẫn có trong bản mới cùng 75 mask bổ sung, nên cần kiểm trực quan chồng lấn và định danh object.
+- Easy: coverage 89,4%; vegetation có IoU 0,589, thấp nhất trong năm lớp.
+- Medium: 55 mask khớp tại IoU ≥ 0,5, 57 mask nộp chưa khớp, 16 object tham chiếu chưa khớp. Mean matched IoU 0,759, precision 49,1%, recall 77,5%.
+- Hard: car có 24 segment khớp, 45 chưa khớp; sidewalk có 0 khớp, 2 mask nộp và 2 segment tham chiếu chưa khớp; bicycle có 1 segment tham chiếu chưa khớp và chưa có annotation nộp. Kiểm mask cùng một vật chồng nhau, sai lớp, thiếu vùng hoặc lệch biên; không tự động xóa mọi mask chưa khớp.
 
-Đây là phản hồi cục bộ sau khi nhận `tiers_gt.zip`, không phải điểm chính thức hay bằng chứng chất lượng bản làm độc lập trước lúc xem đáp án. GitHub Actions dùng workflow sẵn có và chờ release đáp án chính thức; [lần chạy thủ công đã kiểm](https://github.com/duy12345-6789/K4-L2-Day05-LENGOCNAM-2A202602060-Segmentation/actions/runs/35212450941) thành công nhưng bỏ qua chấm điểm.
-
-Lỗi đóng gói ban đầu cũng đã sửa: `easy_semantic/` chứa bài Pose Day 4, `medium_instance/` chứa Easy, `hard_panoptic/` chứa Medium. Bản nộp hiện tại dùng ZIP đúng task trong `submissions/`. Gói đáp án được giữ ngoài fork. Sáu checkpoint chưa có ZIP; mục 2 và mục 4 vẫn cần thông tin thực tế từ người làm bài. PASS, bonus và top 3 do người phụ trách xác nhận.
+Đây là điểm đối chiếu sau khi đã nhận gói đáp án, không phải điểm chính thức, PASS, bonus hoặc top 3. Chỉ số không chứng minh chất lượng bản làm độc lập trước lúc xem đáp án. GitHub Actions dùng workflow sẵn có để kiểm cấu trúc; bước chấm /82 phụ thuộc release đáp án chính thức của repo lớp. Gói `tiers_gt.zip` được giữ ngoài fork; chỉ ZIP annotation và báo cáo được nộp.
 
 ## 4. Ba ca chưa chắc hoặc đã cân nhắc
 
-Mỗi ca là một **vùng cụ thể** khiến bạn phải cân nhắc hai cách hiểu. Ghi dấu hiệu nhìn thấy hoặc quy tắc đã dùng, rồi nêu quyết định hoặc câu hỏi cho coach. Không cần ba lỗi; ca đã quyết định được cũng hợp lệ.
+Các ca dưới đây được ghi từ **lượt QC hiện tại** trên ảnh và bản export mới; không diễn giải thành lịch sử tự annotation trước model.
 
-| Ảnh/vị trí | Hai cách hiểu có thể | Quy tắc/chứng cứ | Quyết định hoặc câu hỏi cho coach |
+| Ảnh/vị trí | Hai cách hiểu có thể | Quy tắc/chứng cứ hiện tại | Quyết định hoặc câu hỏi QC |
 | --- | --- | --- | --- |
-| 1 | … | … | … |
-| 2 | … | … | … |
-| 3 | … | … | … |
+| Hard `000000460147.jpg`, xe chở xe ở giữa tiền cảnh | Toàn bộ cụm là một truck / các xe được chở là car riêng cùng phần truck nhìn thấy | Cụm có cabin/khung chở và các thân xe, cửa kính nhìn thấy riêng; luật thing yêu cầu từng vật đếm được | Tách car thật khỏi phần truck nhìn thấy khi xác định được; không gộp cả cụm vào car. Phần không xác định được cabin hay xe chở cần hỏi coach, không bịa instance. |
+| Hard `000000350023.jpg`, dải xám bên trái lòng đường sát hàng cây và các xe gần mép đường | Dải này thuộc road / thuộc sidewalk | Màu hai vùng gần nhau; ranh chức năng và bó vỉa quan trọng hơn màu. Hai mask sidewalk hiện tại chưa khớp tại ngưỡng IoU | Kiểm và dừng sidewalk theo bó vỉa, không kéo mask theo toàn bộ mảng xám; cần xác nhận lại vùng biên trong CVAT trước khi sửa/export. |
+| Hard `000000460147.jpg`, khe giữa lá/tán cây và nền phía trên hoặc cạnh dải cây giữa đường | Tô kín tán cây là vegetation / giữ các khe có sky, building hoặc road nhìn thấy | Có vùng nền nhìn xuyên giữa các nhánh và mép tán; quy tắc chỉ vẽ phần nhìn thấy, không phủ nền cho đủ coverage | Giữ vegetation theo phần cây nhìn thấy; phân lớp nền ở khe xác định được. Pixel quá nhỏ hoặc mơ hồ ghi để hỏi coach, không ép vegetation. |
+
+Ba ca là ghi nhận QC, không xác nhận các lỗi biên đã được sửa trong CVAT. Bản nộp vẫn cần kiểm lại object/vùng và biên; sáu checkpoint cùng xác nhận ở mục 2 còn thiếu.

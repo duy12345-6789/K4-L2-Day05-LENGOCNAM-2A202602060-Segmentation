@@ -1,0 +1,22 @@
+{
+  "task": "easy_semantic",
+  "type": "semantic",
+  "group": "tiers",
+  "points": 18.7,
+  "weight": 20,
+  "result": {
+    "metric": "mIoU",
+    "value": 0.8204097482137437,
+    "per_class_iou": {
+      "road": 0.9484092853277157,
+      "sidewalk": 0.7999976614751415,
+      "building": 0.8000832414577882,
+      "vegetation": 0.5886968851713532,
+      "sky": 0.9648616676367197
+    },
+    "coverage": 0.8940624198837908
+  },
+  "review_flags": [],
+  "evaluation_source": "Latest DAY05-2A202602060-LENGOCNAM.zip; local unchanged starter scorer with user-provided tiers_gt.zip",
+  "official_score": false
+}
