@@ -66,7 +66,7 @@ Tạo từng task từ ảnh và `cvat-labels.json` của đúng trạm, vẽ, S
 
 - [x] Ba tier có export cho đúng 8 ảnh và danh sách lớp phù hợp; inspector báo 0 lỗi cấu trúc.
 - [x] Ba native ZIP được đặt đúng tên trong `submissions/` của fork, giữ nguyên nội dung CVAT.
-- [x] Ghi một lỗi đóng gói thực tế và cách sửa, cùng ba ca cần cân nhắc, vào [REPORT.md](REPORT.md).
+- [x] Ghi một lỗi đóng gói thực tế và cách sửa, cùng ba ca cần cân nhắc, vào [reports/REPORT.md](reports/REPORT.md).
 - [ ] Medium: kiểm lại object thiếu/thừa, gộp/tách và biên. Hiện có 112 mask; scorer ghi 55 khớp, 57 chưa khớp và 16 object tham chiếu chưa khớp. Không tự động xóa các mask chưa khớp.
 - [ ] Hard: kiểm chồng lấn, đủ thing và phủ stuff. Hiện có 99 mask; hai mask sidewalk chưa khớp tại ngưỡng IoU, lớp bicycle chưa có annotation nộp.
 - [ ] Easy: kiểm biên vegetation và vùng chưa phủ; mIoU hiện tại 0,820, coverage theo tham chiếu 89,4%.
